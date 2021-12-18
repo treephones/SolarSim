@@ -1,4 +1,5 @@
 import * as GL from 'three';
+import { PointLight } from 'three';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Planet from './planets/planet.js';
 import planetData from './planets/planets.json';
@@ -26,12 +27,15 @@ camera.position.set(-90, 140, 140);
 orbitController.update();
 
 scene.add(new GL.AmbientLight(0x333333));
+// var sunlight = new GL.PointLight(0xffffff, 0, 100);
+// sunlight.position.set(12,12,12);
+// scene.add(sunlight);
 
 const starbox = './textures/starbox.jpg';
 const skyBoxLoader = new GL.CubeTextureLoader();
 scene.background = skyBoxLoader.load([starbox,starbox,starbox,starbox,starbox,starbox]);
 
-let sun = new Planet("Sun", 0, 15, 0.004, 0, undefined, './textures/sunmap.jpg');
+let sun = new Planet("Sun", 0, 20, 0.004, 0, undefined, './textures/sunmap.jpg');
 const planets = getDefaultPlanets();
 scene.add(sun.mesh);
 
