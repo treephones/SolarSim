@@ -1,12 +1,13 @@
 import * as GL from 'three';
 
 export default class Planet {
-    constructor(name, mass, radius, rotVel, parent=undefined, texturePath=undefined) {
+    constructor(name, mass, radius, rotVel, orbVel, parent=undefined, texturePath=undefined) {
         this.textureRenderer = new GL.TextureLoader();
         this.name = name;
         this.mass = mass;
         this.radius = radius;
         this.rotVel = rotVel;
+        this.orbVel = orbVel;
         this.parent = parent;
         this.texturePath = texturePath
         this.geometry = new GL.SphereGeometry(this.radius, 32, 32);
@@ -17,10 +18,15 @@ export default class Planet {
             //get from default texture values
         }
         this.mesh = new GL.Mesh(this.geometry, this.texture);
+        this.model = undefined;
     }
 
     rot() {
         this.mesh.rotateY(this.rotVel);
+    }
+
+    orbit() {
+        this.model.rotateY(this.orbVel);
     }
 
 }

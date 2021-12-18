@@ -6,7 +6,7 @@ import planetData from './planets/planets.json';
 var getDefaultPlanets = ()  => {
     let planets = [];
     for(const planet of planetData) {
-        planets.push(new Planet(planet.name, planet.mass, planet.radius, planet.rotationVelocity, [sun, planet.sunDistance], planet.texturePath));
+        planets.push(new Planet(planet.name, planet.mass, planet.radius, planet.rotationVelocity, planet.orbitVelocity, [sun, planet.sunDistance], planet.texturePath));
     }
     return planets;
 }
@@ -31,13 +31,14 @@ const starbox = './textures/starbox.jpg';
 const skyBoxLoader = new GL.CubeTextureLoader();
 scene.background = skyBoxLoader.load([starbox,starbox,starbox,starbox,starbox,starbox]);
 
-let sun = new Planet("Sun", 0, 15, 0.004, undefined, './textures/sunmap.jpg');
+let sun = new Planet("Sun", 0, 15, 0.004, 0, undefined, './textures/sunmap.jpg');
 const planets = getDefaultPlanets();
 scene.add(sun.mesh);
 
 var animate = () => {
     planets.forEach(planet => {
         planet.rot();
+        planet.orbit();
     });
     sun.rot();
     renderer.render(scene, camera);
@@ -45,9 +46,12 @@ var animate = () => {
 
 var populateScene = () => {
     planets.forEach(planet => {
-        let mesh = planet.mesh;
-        scene.add(mesh);
+        const mesh = planet.mesh;
+        const obj = new GL.Object3D();
+        obj.add(mesh); 
+        scene.add(obj);
         mesh.position.x = planet.parent[1];
+        planet.model = obj;
     });
 }
 
