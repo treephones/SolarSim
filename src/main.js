@@ -4,6 +4,46 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Planet from './planets/planet.js';
 import planetData from './planets/planets.json';
 
+const pClass = "planetProperty";
+
+var canvas = document.getElementById("ss");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+var editor = document.getElementById("popupEditor");
+var navbar = document.getElementById("icon-bar");
+
+var openEditor = () => {
+    document.get
+    editor.style.width = "30rem";
+    navbar.style.visibility = 'hidden';
+}
+  
+var closeEditor = () => {
+    while(editor.lastChild.id != 'closer') {
+        editor.removeChild(editor.lastChild);
+    }
+    editor.style.width = "0";
+    navbar.style.visibility = 'visible';
+}
+
+document.getElementById("closer").onclick = () => {
+    closeEditor();
+}
+
+document.getElementById("orb").onclick = () => {
+
+    let e = document.createElement('h2');
+    e.textContent = "Edit Rotation Speed";
+    e.className = pClass;
+    editor.appendChild(e);
+    e = document.createElement('h2');
+    e.textContent = "Edit Orbit Speed";
+    e.className = pClass;
+    editor.appendChild(e);
+    openEditor();
+}
+
 var getDefaultPlanets = ()  => {
     let planets = [];
     for(const planet of planetData) {
@@ -12,9 +52,6 @@ var getDefaultPlanets = ()  => {
     return planets;
 }
 
-var canvas = document.getElementById("ss");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 //scene properties
 const scene = new GL.Scene();
 const camera = new GL.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);

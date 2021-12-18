@@ -4,13 +4,27 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="module" src="/src/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SolarSim</title>
   </head>
   <body>
     <div id="app">
       <canvas id='ss'></canvas>
+      <div id="popupEditor" class="popup">
+        <a href="javascript:void(0);" class="closebtn" id="closer">&times;</a>
+      </div>
+      <div class="icon-bar" id="icon-bar">
+        <a class="active" href="#" title="Home"><i class="fa fa-sun-o"></i></a>
+        <a id="inf" title="Planet Information"><i class="fa fa-globe"></i></a>
+        <a id="orb" title="Edit Orbit"><i class="fa fa-pencil"></i></a>
+        <a id="ref" title="Refresh Simulation"><i class="fa fa-refresh"></i></a>
+        <a id="add" title="Add Planet"><i class="fa fa-plus"></i></a>
+      </div>
+      <div id="logo">
+        <h1>SolarSim <i class="fa fa-sun-o"></i></h1>  
+      </div>
     </div>
-    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
