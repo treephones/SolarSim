@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Mercury",
+        "mass": 0,
+        "radius": 3,
+        "rotationVelocity": 0.004,
+        "sunDistance": 28,
+        "texturePath": "./textures/mercurymap.jpg"
+    },
+    {
+        "name": "Venus",
+        "mass": 0,
+        "radius": 5.8,
+        "rotationVelocity": 0.002,
+        "sunDistance": 44,
+        "texturePath": "./textures/venusmap.jpg"
+    },
+    {
+        "name": "Earth",
+        "mass": 0,
+        "radius": 6.1,
+        "rotationVelocity": 0.02,
+        "sunDistance": 62,
+        "texturePath": "./textures/earthmap1k.jpg"
+    },
+    {
+        "name": "Mars",
+        "mass": 0,
+        "radius": 4,
+        "rotationVelocity": 0.018,
+        "sunDistance": 78,
+        "texturePath": "./textures/marsmap1k.jpg"
+    },
+    {
+        "name": "Jupiter",
+        "mass": 0,
+        "radius": 12,
+        "rotationVelocity": 0.04,
+        "sunDistance": 100,
+        "texturePath": "./textures/jupitermap.jpg"
+    },
+    {
+        "name": "Saturn",
+        "mass": 0,
+        "radius": 10,
+        "rotationVelocity": 0.038,
+        "sunDistance": 138,
+        "texturePath": "./textures/saturnmap.jpg"
+    },
+    {
+        "name": "Uranus",
+        "mass": 0,
+        "radius": 7,
+        "rotationVelocity": 0.03,
+        "sunDistance": 176,
+        "texturePath": "./textures/uranusmap.jpg"
+    },
+    {
+        "name": "Neptune",
+        "mass": 0,
+        "radius": 7.1,
+        "rotationVelocity": 0.032,
+        "sunDistance": 200,
+        "texturePath": "./textures/neptunemap.jpg"
+    },
+    {
+        "name": "Pluto",
+        "mass": 0,
+        "radius": 2.8,
+        "rotationVelocity": 0.008,
+        "sunDistance": 216,
+        "texturePath": "./textures/plutomap1k.jpg"
+    }
+]
