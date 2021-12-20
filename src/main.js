@@ -6,6 +6,10 @@ import planetData from './planets/planets.json';
 
 const pClass = "planetProperty";
 
+//editables
+var rotVelMod = 1;
+var orbVelMod = 1;
+
 var canvas = document.getElementById("ss");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -32,11 +36,38 @@ document.getElementById("closer").onclick = () => {
 }
 
 document.getElementById("orb").onclick = () => {
-
+    let d = document.createElement('div');
+    d.className = pClass;
     let e = document.createElement('h2');
     e.textContent = "Edit Rotation Speed";
-    e.className = pClass;
-    editor.appendChild(e);
+    d.appendChild(e);
+
+    let label = document.createElement('h2');
+    label.textContent = `${orbVelMod}`;
+    d.appendChild(label);
+
+    let slider = document.createElement('input');
+    slider.className = 'range';
+    slider.type = 'range';
+    slider.value = `${orbVelMod}`;
+    slider.min = '0';
+    slider.max = '19.9';
+    slider.step = '0.1';
+    slider.onchange = () => {
+        let nval = parseFloat(slider.value)+0.1;
+        label.textContent = `${nval.toFixed(1)}`;
+        orbVelMod = nval;
+    }
+    slider.onmousemove = () => {
+        let nval = parseFloat(slider.value)+0.1;
+        label.textContent = `${nval.toFixed(1)}`;
+        orbVelMod = nval;
+    }
+    d.appendChild(slider);
+    d.appendChild(document.createElement('hr'));
+    editor.appendChild(d);
+
+
     e = document.createElement('h2');
     e.textContent = "Edit Orbit Speed";
     e.className = pClass;
@@ -78,10 +109,10 @@ scene.add(sun.mesh);
 
 var animate = () => {
     planets.forEach(planet => {
-        planet.rot();
-        planet.orbit();
+        planet.rot(rotVelMod);
+        planet.orbit(orbVelMod);
     });
-    sun.rot();
+    sun.rot(rotVelMod);
     renderer.render(scene, camera);
 }
 

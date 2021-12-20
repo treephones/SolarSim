@@ -22,12 +22,12 @@ export default class Planet {
         this.model = undefined;
     }
 
-    rot() {
-        this.mesh.rotateY(this.rotVel);
+    rot(modifier) {
+        this.mesh.rotateY(this.rotVel*modifier);
     }
 
-    orbit() {
-        this.model.rotateY(this.orbVel);
+    orbit(modifier) {
+        this.model.rotateY(this.orbVel*modifier);
     }
 
 }
