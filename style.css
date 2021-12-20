@@ -89,6 +89,10 @@ h1 {
   color: white;
 }
 
+.propertyContainer {
+  margin-top: 5rem;
+}
+
 .range {
   width: 20rem;
   -webkit-appearance: none;

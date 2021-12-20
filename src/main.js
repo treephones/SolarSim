@@ -36,10 +36,17 @@ document.getElementById("closer").onclick = () => {
 }
 
 document.getElementById("orb").onclick = () => {
+    let head = document.createElement('h1');
+    head.textContent = "Editable Properties:";
+    head.className = pClass;
+    editor.appendChild(head);
+
     let d = document.createElement('div');
-    d.className = pClass;
+    d.className = `${pClass} propertyContainer`;
+    d.append(document.createElement('hr'));
+
     let e = document.createElement('h2');
-    e.textContent = "Edit Rotation Speed";
+    e.textContent = "Edit Orbit Speed";
     d.appendChild(e);
 
     let label = document.createElement('h2');
@@ -54,13 +61,13 @@ document.getElementById("orb").onclick = () => {
     slider.max = '19.9';
     slider.step = '0.1';
     slider.onchange = () => {
-        let nval = parseFloat(slider.value)+0.1;
-        label.textContent = `${nval.toFixed(1)}`;
+        let nval = (parseFloat(slider.value)+0.1).toFixed(1);
+        label.textContent = `${nval}`;
         orbVelMod = nval;
     }
     slider.onmousemove = () => {
-        let nval = parseFloat(slider.value)+0.1;
-        label.textContent = `${nval.toFixed(1)}`;
+        let nval = (parseFloat(slider.value)+0.1).toFixed(1);
+        label.textContent = `${nval}`;
         orbVelMod = nval;
     }
     d.appendChild(slider);
@@ -69,7 +76,7 @@ document.getElementById("orb").onclick = () => {
 
 
     e = document.createElement('h2');
-    e.textContent = "Edit Orbit Speed";
+    e.textContent = "Edit Rotation Speed";
     e.className = pClass;
     editor.appendChild(e);
     openEditor();
