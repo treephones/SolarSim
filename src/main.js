@@ -46,7 +46,7 @@ document.getElementById("orb").onclick = () => {
     d.append(document.createElement('hr'));
 
     let e = document.createElement('h2');
-    e.textContent = "Edit Orbit Speed";
+    e.textContent = "Orbit Speed Multiplier";
     d.appendChild(e);
 
     let label = document.createElement('h2');
@@ -57,18 +57,18 @@ document.getElementById("orb").onclick = () => {
     slider.className = 'range';
     slider.type = 'range';
     slider.value = `${orbVelMod}`;
-    slider.min = '0';
+    slider.min = '-19.9';
     slider.max = '19.9';
     slider.step = '0.1';
     slider.onchange = () => {
         let nval = (parseFloat(slider.value)+0.1).toFixed(1);
         label.textContent = `${nval}`;
-        orbVelMod = nval;
+        orbVelMod = nval < 0 ? -1/nval : nval;
     }
     slider.onmousemove = () => {
         let nval = (parseFloat(slider.value)+0.1).toFixed(1);
         label.textContent = `${nval}`;
-        orbVelMod = nval;
+        orbVelMod = nval < 0 ? -1/nval : nval;
     }
     d.appendChild(slider);
     d.appendChild(document.createElement('hr'));
