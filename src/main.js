@@ -1,7 +1,7 @@
 import * as GL from 'https://cdn.skypack.dev/three';
 import { OrbitControls } from "https://cdn.skypack.dev/three@0.120.0/examples/jsm/controls/OrbitControls.js";
 import Planet from './planets/planet.js';
-import planetData from './planets/planets.json';
+import planetData from './planets/planets.json' assert { type: "json" };
 
 const pClass = "planetProperty";
 
