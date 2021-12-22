@@ -1,4 +1,4 @@
-import * as GL from 'three';
+import * as GL from 'https://cdn.skypack.dev/three';
 
 export default class Planet {
     constructor(name, mass, radius, rotVel, orbVel, parent=undefined, texturePath=undefined, rings=[undefined, undefined], description, link) {

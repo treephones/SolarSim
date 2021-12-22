@@ -1,5 +1,4 @@
-import * as GL from 'three';
-import { PointLight } from 'three';
+import * as GL from 'https://cdn.skypack.dev/three';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Planet from './planets/planet.js';
 import planetData from './planets/planets.json';
