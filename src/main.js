@@ -182,6 +182,11 @@ document.getElementById('ref').onclick = () => {
         scene.remove(scene.children[i]);
     }
     scene.add(sun.mesh);
+    orbVelMod = 1;
+    rotVelMod = 1;
+    planetDistMod = 1;
+    pause.firstChild.className = "fa fa-pause";
+    isPaused = false;
     populateScene();
 }
 
@@ -257,8 +262,16 @@ var getMeshPosition = (mesh) => {
 
 var getDefaultPlanets = ()  => {
     let planets = [];
+    let rings = [undefined, undefined];
     for(const planet of planetData) {
-        planets.push(new Planet(planet.name, planet.mass, planet.radius, planet.rotationVelocity, planet.orbitVelocity, [sun, planet.sunDistance], planet.texturePath));
+        if(planet.name == "Saturn") {
+            rings = [12,20];
+        }
+        else if(planet.name == "Uranus") {
+            rings = [7,12];
+        }
+        planets.push(new Planet(planet.name, planet.mass, planet.radius, planet.rotationVelocity, planet.orbitVelocity, [sun, planet.sunDistance], planet.texturePath, rings));
+        rings = [undefined, undefined];
     }
     return planets;
 }
@@ -298,7 +311,7 @@ var animate = () => {
     sun.rot(rotVelMod);
     if(lookingAt) {
         let meshLoc = getMeshPosition(lookingAt.mesh);
-        camera.position.set(meshLoc.x-50, meshLoc.y, meshLoc.z-50);
+        camera.position.set(meshLoc.x-50, meshLoc.y+10, meshLoc.z-50);
         camera.lookAt(meshLoc);
     }
     renderer.render(scene, camera);
@@ -309,6 +322,25 @@ var populateScene = () => {
         const mesh = planet.mesh;
         const obj = new GL.Object3D();
         obj.add(mesh); 
+        if(planet.hasRings) {
+            const ringGeometry = new GL.RingGeometry(planet.ringRadiusi, planet.ringRadiuso, 32);
+            let texturePath = "";
+            switch(planet.name) {
+                case "Saturn":
+                    texturePath = "./textures/saturnringcolor.png";
+                    break;
+                case "Uranus":
+                    texturePath = "./textures/uranusringcolor.png";
+                    break;
+                default:
+                    //def
+            }
+            const ringTexture = new GL.MeshBasicMaterial({map: planet.textureRenderer.load(texturePath), side: GL.DoubleSide});
+            const ringMesh = new GL.Mesh(ringGeometry, ringTexture);
+            obj.add(ringMesh);
+            ringMesh.position.x = planet.parent[1];
+            ringMesh.rotation.x = -0.5*Math.PI;
+        }
         scene.add(obj);
         mesh.position.x = planet.parent[1];
         planet.model = obj;

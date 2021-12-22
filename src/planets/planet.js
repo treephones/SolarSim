@@ -1,7 +1,7 @@
 import * as GL from 'three';
 
 export default class Planet {
-    constructor(name, mass, radius, rotVel, orbVel, parent=undefined, texturePath=undefined, rings=[]) {
+    constructor(name, mass, radius, rotVel, orbVel, parent=undefined, texturePath=undefined, rings=[undefined, undefined]) {
         this.textureRenderer = new GL.TextureLoader();
         this.name = name;
         this.mass = mass;
@@ -17,7 +17,9 @@ export default class Planet {
         else {
             //get from default texture values
         }
-        this.rings = rings;
+        this.ringRadiusi = rings[0];
+        this.ringRadiuso = rings[1];
+        this.hasRings = !!this.ringRadiusi;
         this.mesh = new GL.Mesh(this.geometry, this.texture);
         this.model = undefined;
     }
