@@ -73,6 +73,16 @@ h1 {
   margin-left: 50px;
 }
 
+.backbtn {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  font-size: 36px;
+  margin-right: 50px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
 #main {
   transition: margin-left .5s;
   padding: 20px;
@@ -89,7 +99,7 @@ h1 {
   color: white;
 }
 
-.propertyContainer {
+.top {
   margin-top: 5rem;
 }
 
