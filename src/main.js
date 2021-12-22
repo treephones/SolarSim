@@ -241,12 +241,25 @@ window.onhashchange = () => {
             name.textContent = planet.name;
             name.className = pClass;
             editor.appendChild(name);
+
             let d = document.createElement('div');
             d.className = `${pClass} top`;
             d.appendChild(document.createElement('hr'));
-
             editor.appendChild(d);
 
+            let d2 = document.createElement('div');
+            d2.className = pClass;
+            let label = document.createElement('h2');
+            label.textContent = "Description";
+            let content = document.createElement('h3');
+            content.innerHTML = planet.description.replaceAll("()", "<br><br>");
+            let source = document.createElement('h3');
+            source.innerHTML = `Read more about ${planet.name} <a id='source' href='${planet.link}' target='_blank'>here.</a>`;
+            d2.appendChild(label);
+            d2.appendChild(content);
+            d2.appendChild(source);
+
+            editor.appendChild(d2);
             openEditor();
             break;
         }
@@ -270,7 +283,7 @@ var getDefaultPlanets = ()  => {
         else if(planet.name == "Uranus") {
             rings = [7,12];
         }
-        planets.push(new Planet(planet.name, planet.mass, planet.radius, planet.rotationVelocity, planet.orbitVelocity, [sun, planet.sunDistance], planet.texturePath, rings));
+        planets.push(new Planet(planet.name, planet.mass, planet.radius, planet.rotationVelocity, planet.orbitVelocity, [sun, planet.sunDistance], planet.texturePath, rings, planet.desc, planet.link));
         rings = [undefined, undefined];
     }
     return planets;
@@ -307,6 +320,9 @@ var animate = () => {
         planet.rot(rotVelMod);
         planet.orbit(orbVelMod);
         planet.mesh.position.x = planet.parent[1]*planetDistMod;
+        if(planet.hasRings) {
+            planet.ringMesh.position.x = planet.parent[1]*planetDistMod;
+        }
     });
     sun.rot(rotVelMod);
     if(lookingAt) {
@@ -340,6 +356,7 @@ var populateScene = () => {
             obj.add(ringMesh);
             ringMesh.position.x = planet.parent[1];
             ringMesh.rotation.x = -0.5*Math.PI;
+            planet.ringMesh = ringMesh;
         }
         scene.add(obj);
         mesh.position.x = planet.parent[1];
